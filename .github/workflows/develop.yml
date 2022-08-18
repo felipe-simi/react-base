@@ -16,3 +16,13 @@ jobs:
           node-version: '16'
           cache: 'yarn'
       - run: yarn install --immutable
+  test:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'yarn'
+      - run: yarn run test:ci
