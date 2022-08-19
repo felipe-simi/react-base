@@ -38,4 +38,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
+      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        name: List the state of node modules
+        continue-on-error: true
+        run: npm list
       - run: npm run test:ci
